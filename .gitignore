@@ -1,5 +1,6 @@
 \downloads
-\dist
+\output
 \.tmp
 \bin
 \obj
+*.userprefs
