@@ -105,7 +105,7 @@ class Build : NukeBuild
                 }
 
                 var nuspecPath = SourceDirectory / "Selenium.WebDriver.PhantomJS.nuspec";
-                NuGetTasks.NuGetPack(nuspecPath, s => NuGetTasks.DefaultNuGetPack.SetBasePath(SourceDirectory));
+                NuGetTasks.NuGetPack(nuspecPath, s => NuGetTasks.DefaultNuGetPack.SetBasePath(SourceDirectory).SetVersion(Version));
               });
 
     private static void ExtractTGZ(string gzArchiveName, string destFolder)
