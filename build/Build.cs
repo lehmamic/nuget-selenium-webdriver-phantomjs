@@ -14,15 +14,17 @@ using System.IO.Compression;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Tar;
 using ICSharpCode.SharpZipLib.BZip2;
+using Nuke.Common.Tools.NuGet;
 
 class Build : NukeBuild
 {
     private const string Version = "2.1.1";
 
     private static readonly Uri BaseUri = new Uri("https://bitbucket.org/ariya/phantomjs/downloads/");
+    private static readonly Uri NuGetDownloadUri = new Uri("https://dist.nuget.org/win-x86-commandline/latest/nuget.exe");
 
     // Console application entry. Also defines the default target.
-    public static int Main () => Execute<Build>(x => x.Decompress);
+    public static int Main () => Execute<Build>(x => x.Pack);
 
     // Auto-injection fields:
 
@@ -87,14 +89,31 @@ class Build : NukeBuild
                 }
               });
 
+    Target Pack => _ => _
+              .Executes(() =>
+              .DependsOn(Decompress)
+              {
+                var nugetExe = TemporaryDirectory / "nuget.exe";
+                if (!File.Exists(nugetExe))
+                {
+                    Logger.Info($"Nuget.exe not found, downloading from {NuGetDownloadUri}");	
+                    using (var client = new WebClient())
+                    {
+                        client.DownloadFile(NuGetDownloadUri, nugetExe);
+                    }
+                }
+
+                var nuspecPath = SourceDirectory / "Selenium.WebDriver.PhantomJS.nuspec";
+                NuGetTasks.NuGetPack(nuspecPath, s => NuGetTasks.DefaultNuGetPack.SetBasePath(SourceDirectory));
+              });
+
     private static void ExtractTGZ(string gzArchiveName, string destFolder)
     {
-      using (Stream inStream = File.OpenRead(gzArchiveName))
-      using (Stream bzip2Stream = new BZip2InputStream(inStream))
-      using(TarArchive tarArchive = TarArchive.CreateInputTarArchive(bzip2Stream))
-      {
-        tarArchive.ExtractContents(destFolder);
-
-      }
+        using (Stream inStream = File.OpenRead(gzArchiveName))
+        using (Stream bzip2Stream = new BZip2InputStream(inStream))
+        using(TarArchive tarArchive = TarArchive.CreateInputTarArchive(bzip2Stream))
+        {
+            tarArchive.ExtractContents(destFolder);
+        }
     }
 }
