@@ -30,12 +30,12 @@
       </PropertyGroup>
     </When>
   </Choose>
-  <!-- Detect definition of compilation symbol that is "_PUBLISH_PhantomJS", or "PublishPhantomJS" msbuild property. -->
+  <!-- Detect definition of compilation symbol that is "_PUBLISH_PHANTOMJS", or "PublishPhantomJS" msbuild property. -->
   <Choose>
     <When Condition="'$(PublishPhantomJS)' == ''">
       <PropertyGroup>
         <DefineConstantsPadded Condition="'$(DefineConstantsPadded)' == ''">;$(DefineConstants);</DefineConstantsPadded>
-        <PublishPhantomJS Condition="$(DefineConstantsPadded.IndexOf(';_PUBLISH_PhantomJS;')) != -1">true</PublishPhantomJS>
+        <PublishPhantomJS Condition="$(DefineConstantsPadded.IndexOf(';_PUBLISH_PHANTOMJS;')) != -1">true</PublishPhantomJS>
         <PublishPhantomJS Condition="'$(PublishPhantomJS)' == ''">false</PublishPhantomJS>
       </PropertyGroup>
     </When>
