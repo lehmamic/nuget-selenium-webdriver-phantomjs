@@ -17,12 +17,6 @@
     <projectUrl>https://github.com/lehmamic/nuget-selenium-webdriver-phantomjs</projectUrl>
     <licenseUrl>http://unlicense.org</licenseUrl>
     <tags>Selenium WebDriver PhantomJS</tags>
-    <releaseNotes>
-      <![CDATA[
-	    v.2.1.1.0
-      - PhantomJS 2.1.1 release
-      ]]>
-    </releaseNotes>
   </metadata>
   <files>
     <file src="..\downloads\win32\phantomjs-2.1.1-windows\bin\phantomjs.exe" target="driver/win32"/>
