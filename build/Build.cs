@@ -70,7 +70,8 @@ class Build : NukeBuild
             
     Target Decompress => _ => _
               .DependsOn(Download)
-              .Executes(() => {
+              .Executes(() =>
+              {
                 foreach (var driver in Drivers)
                 {
                   var downloadedFile = RootDirectory / "downloads" / driver.Platform / driver.FileName;
@@ -90,8 +91,8 @@ class Build : NukeBuild
               });
 
     Target Pack => _ => _
-              .Executes(() =>
               .DependsOn(Decompress)
+              .Executes(() =>
               {
                 var nugetExe = TemporaryDirectory / "nuget.exe";
                 if (!File.Exists(nugetExe))
