@@ -6,7 +6,6 @@ using Nuke.Common.Git;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Core;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
-using static Nuke.Common.Tools.NuGet.NuGetTasks;
 using static Nuke.Core.IO.FileSystemTasks;
 using static Nuke.Core.IO.PathConstruction;
 using static Nuke.Core.EnvironmentInfo;
@@ -15,6 +14,7 @@ using System.IO.Compression;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Tar;
 using ICSharpCode.SharpZipLib.BZip2;
+using Nuke.Common.Tools.NuGet;
 
 class Build : NukeBuild
 {
@@ -105,7 +105,7 @@ class Build : NukeBuild
                 }
 
                 var nuspecPath = SourceDirectory / "Selenium.WebDriver.PhantomJS.CrossPlatform.nuspec";
-                NuGetPack(nuspecPath, s => DefaultNuGetPack.SetBasePath(SourceDirectory).SetVersion(Version));
+                NuGetTasks.NuGetPack(nuspecPath, s => NuGetTasks.DefaultNuGetPack.SetBasePath(SourceDirectory).SetVersion(Version));
               });
 
     private static void ExtractTGZ(string gzArchiveName, string destFolder)
