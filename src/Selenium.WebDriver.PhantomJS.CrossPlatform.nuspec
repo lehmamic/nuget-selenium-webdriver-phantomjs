@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Selenium.WebDriver.PhantomJS</id>
-    <title>Selenium.WebDriver.PhantomJS (Win32, macOS, and Linux64)</title>
+    <id>Selenium.WebDriver.PhantomJS.CrossPlatform</id>
+    <title>Selenium.WebDriver.PhantomJS.CrossPlatform (Win32, macOS, and Linux64)</title>
     <version>2.1.1.0</version>
     <authors>lehmamic</authors>
     <summary>Selenium PhantomJS (Win32, macOS, and Linux64) (does not make your source repository to fat.)</summary>
@@ -16,12 +16,12 @@
     <language>en-US</language>
     <projectUrl>https://github.com/lehmamic/nuget-selenium-webdriver-phantomjs</projectUrl>
     <licenseUrl>http://unlicense.org</licenseUrl>
-    <tags>Selenium WebDriver PhantomJS</tags>
+    <tags>Selenium WebDriver PhantomJS CrossPlatform</tags>
   </metadata>
   <files>
     <file src="..\downloads\win32\phantomjs-2.1.1-windows\bin\phantomjs.exe" target="driver/win32"/>
     <file src="..\downloads\mac64\phantomjs-2.1.1-macosx\bin\phantomjs" target="driver/mac64/phantomjs"/>
     <file src="..\downloads\linux64\phantomjs-2.1.1-linux-x86_64\bin\phantomjs" target="driver/linux64/phantomjs"/>
-    <file src="Selenium.WebDriver.PhantomJS.targets" target="build"/>
+    <file src="Selenium.WebDriver.PhantomJS.CrossPlatform.targets" target="build"/>
   </files>
 </package>

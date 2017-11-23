@@ -14,7 +14,7 @@
     <PhantomJSTargetPath Condition=" '$(PhantomJSTargetPath)' == '' ">$(TargetDir)</PhantomJSTargetPath>
   </PropertyGroup>
 
-  <Target Name="PhantomJSDriver" BeforeTargets="BeforeBuild" Condition="'$(WebDriverPlatform)' != 'win32'">
+  <Target Name="PhantomJS" BeforeTargets="BeforeBuild" Condition="'$(WebDriverPlatform)' != 'win32'">
     <Exec Command="chmod +x &quot;$(PhantomJSSrcPath)&quot;" />
   </Target>
 
